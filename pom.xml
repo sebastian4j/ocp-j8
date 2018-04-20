@@ -11,5 +11,6 @@
     <modules>
         <module>instancia</module>
         <module>protejido</module>
+        <module>estaticos</module>
     </modules>
 </project>
