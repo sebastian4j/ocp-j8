@@ -104,7 +104,7 @@ public class Genericos {
         
         t.stream().forEach(e -> {
             System.out.println(e.getClass().getName());
-            System.out.println(e.toString());
+            System.out.println(e.toString()); // solo puede ser utilizado como Object
         });
 //        t.add(new A()); solo C
 //        t.add(new B()); solo C
