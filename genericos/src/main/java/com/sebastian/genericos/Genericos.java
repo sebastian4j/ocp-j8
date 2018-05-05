@@ -1,5 +1,7 @@
 package com.sebastian.genericos;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class Genericos {
     }
 
     class B extends A {
+
         public void chao() {
         }
     }
@@ -32,6 +35,32 @@ public class Genericos {
 
     private void validar() {
         validarList();
+        hh(null);
+        ii(new ArrayList<Object>());
+        jj(new ArrayList<Object>());
+        jj(new ArrayList<String>());
+//        jj(new ArrayList<Number>()); // error, no compila
+//        ii(new ArrayList<String>()); // error, no compila, tiene que ser el mismo tipo
+        List<? super IOException> exceptions = new ArrayList<Exception>();
+//        exceptions.add(new Exception()); // no compila
+        exceptions.add(new IOException());
+        exceptions.add(new FileNotFoundException());
+
+    }
+
+    private void jj(List<? super String> lista) {
+//        lista.add(new Object()); // no se puede
+        lista.add("");
+        lista.get(0); // se obtiene como un object
+    }
+
+    private void hh(List<?> lista) {
+//        lista.add(new Object()); // error (no compila), inmutable
+    }
+
+    private void ii(List<Object> lista) {
+        lista.add(new Object());
+        lista.add(new String("")); // se puede =)
     }
 
     private void validarList() {
@@ -101,7 +130,7 @@ public class Genericos {
 
     private void gg(List<? super C> t) {
         t.add(new C());
-        
+
         t.stream().forEach(e -> {
             System.out.println(e.getClass().getName());
             System.out.println(e.toString()); // solo puede ser utilizado como Object
