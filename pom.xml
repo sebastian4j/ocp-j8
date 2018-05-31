@@ -13,5 +13,7 @@
         <module>protejido</module>
         <module>estaticos</module>
         <module>genericos</module>
+        <module>lambdas-streams</module>
+        <module>colecciones</module>
     </modules>
 </project>
