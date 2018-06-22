@@ -15,5 +15,7 @@
         <module>genericos</module>
         <module>lambdas-streams</module>
         <module>colecciones</module>
+        <module>date-time</module>
+        <module>archivos</module>
     </modules>
 </project>
