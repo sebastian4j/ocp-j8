@@ -2,33 +2,34 @@ package com.sebastian.instancia;
 
 public class TestClass {
   public class AA {
+
   }
+
   public static class BB {
-    public void bb() {
-      System.out.println("hola");
-    }
-    public static void cc() {
-      System.out.println("hola");
+    public static void bb() {
+
     }
   }
 
-  public void useClasses() {
+  public void aa() {
     new TestClass();
-    var a = new AA();
-    a = new TestClass.AA();
-    a = new TestClass().new AA();
-    var b = new TestClass.BB();    
+    new AA();
     new BB();
-    new TestClass. BB();
+    new TestClass.AA();
+    new TestClass.BB();
+    new TestClass().new AA();
+//  new TestClass().new BB();
+    TestClass.BB.bb();
   }
 
-  public static void main(String[] a) {
-//    new AA(); // no compila
+  public static void bb() {
+    new TestClass();
+//  new AA();
     new BB();
+//  new TestClass.AA();
+    new TestClass.BB();
     new TestClass().new AA();
-    new TestClass. BB();
-    new TestClass. BB().bb();
-    TestClass.BB.cc();
-//    new TestClass.AA(); // no compila
+//    new TestClass().new BB();
+    TestClass.BB.bb();
   }
 }
