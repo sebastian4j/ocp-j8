@@ -28,6 +28,7 @@ public class Estaticos {
     }
     
     public static void main(String[] args) {
+      new AAA.BBB();
         new Hola().saludo();
 //        new Hola().saludoEstatico(); <-- error, no le pertenece a hola
         Interface.saludoEstatico();

@@ -33,7 +33,17 @@ public class Main {
 
     Map<String, Double> sd;
     List<String> s;
-    
+    Stream<Integer> ss = Stream.of(1,2);
+    List<Integer> li = new ArrayList<>();
+    li.add(3);li.add(1);li.add(2);
+    li.stream().sorted().forEach(lx -> {
+      li.add(lx);
+    });
+    System.out.println("__");
+    li.forEach(System.out::println);
+    System.out.println("__");
+//    ss.count();
+//    ss.mapToInt(x -> x).sum();    
     new Main().metodo1().metodo2().metodo3().metodo4();
   }
 
