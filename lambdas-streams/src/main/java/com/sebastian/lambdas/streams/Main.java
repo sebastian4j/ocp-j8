@@ -1,6 +1,7 @@
 package com.sebastian.lambdas.streams;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
@@ -25,6 +26,24 @@ import java.util.stream.Stream;
 public class Main {
 
   public static void main(String[] args) {
+    List<String> l1 = Arrays.asList("a", "b");
+    List<String> l2 = Arrays.asList("1", "2");
+    Stream.of(l1, l2).flatMap((x) -> Stream.of(x)).peek(x -> System.out.println(x.getClass()))
+    .forEach((x) -> {
+      System.out.println(x.getClass());
+      System.out.println(x);
+    });
+
+    Stream.of(l1, l2).flatMap((x) -> x.stream())
+    .peek(x -> System.out.println(">>" + x.getClass()))
+    .forEach((x) -> {
+      System.out.println(x.getClass());
+      System.out.println(x);
+    });
+
+    Predicate d;
+
+    System.out.println();
     Stream.iterate("-", s -> s + s).limit(10).forEach(System.out::println);
     System.out.println(
         Stream.iterate(1, x -> ++x).limit(5).map(x -> "" + x).collect(Collectors.joining()));
@@ -32,18 +51,22 @@ public class Main {
     l.forEach(System.out::println);
 
     Map<String, Double> sd;
-    List<String> s;
-    Stream<Integer> ss = Stream.of(1,2);
+    List<String> s = null;
+    Stream.of(s);
+
+    Stream<Integer> ss = Stream.of(1, 2);
     List<Integer> li = new ArrayList<>();
-    li.add(3);li.add(1);li.add(2);
+    li.add(3);
+    li.add(1);
+    li.add(2);
     li.stream().sorted().forEach(lx -> {
       li.add(lx);
     });
     System.out.println("__");
     li.forEach(System.out::println);
     System.out.println("__");
-//    ss.count();
-//    ss.mapToInt(x -> x).sum();    
+    // ss.count();
+    // ss.mapToInt(x -> x).sum();
     new Main().metodo1().metodo2().metodo3().metodo4();
   }
 
@@ -79,6 +102,7 @@ public class Main {
     nombres.sorted(Comparator.reverseOrder()).forEach(System.out::println);
     nombres = Stream.of("a", "b", "c", "d");
     nombres.sorted(new Comparator<String>() {
+      @Override
       public int compare(String a, String b) {
         return 1;
       }
@@ -112,7 +136,7 @@ public class Main {
     // no se puede reutilizar el stream
     str = Stream.of("h", "o", "l", "a");
     System.out
-        .println("to-collection: " + str.collect(Collectors.toCollection(LinkedHashSet::new)));
+    .println("to-collection: " + str.collect(Collectors.toCollection(LinkedHashSet::new)));
     str = Stream.of("h", "o", "l", "a");
     System.out.println("to-set: " + str.collect(Collectors.toSet()));
     return this;

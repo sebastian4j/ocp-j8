@@ -1,6 +1,7 @@
 package com.sebastian.fecha.hora;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
@@ -14,6 +15,16 @@ public class FechaHora {
   public static void main(String[] args) {
     // periodo no cambia el tiempo
     // duracion si
+    LocalDateTime dt = LocalDateTime.parse("2015-01-02T17:13:50");
+    System.out.println(dt.format(java.time.format.DateTimeFormatter.ISO_DATE_TIME));
+    System.out.println(dt.format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    System.out.println(dt.toString());
+    ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.parse("2015-01-02T17:13:50Z"),
+        ZoneId.of("America/Santiago"));
+    System.out.println(zdt.format(DateTimeFormatter.ISO_DATE_TIME));
+    System.out.println(zdt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    System.out.println();
+    ZoneId.getAvailableZoneIds().forEach(System.out::println);
     LocalDateTime ld = LocalDateTime.of(2015, Month.OCTOBER, 31, 10, 0);
 
     ZonedDateTime date = ZonedDateTime.of(ld, ZoneId.of("US/Eastern"));
@@ -50,5 +61,6 @@ public class FechaHora {
     System.out.println(Period.ofWeeks(1));
     System.out.println(Period.ofYears(1));
     System.out.println();
+    Instant.ofEpochMilli(5).plus(1, ChronoUnit.DAYS);
   }
 }
