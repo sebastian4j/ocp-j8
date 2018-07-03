@@ -13,6 +13,8 @@ import java.time.temporal.ChronoUnit;
 
 public class FechaHora {
   public static void main(String[] args) {
+    System.out.println(Instant.now());
+    System.out.println(LocalDateTime.now());
     // periodo no cambia el tiempo
     // duracion si
     LocalDateTime dt = LocalDateTime.parse("2015-01-02T17:13:50");
