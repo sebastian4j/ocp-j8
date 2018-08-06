@@ -24,8 +24,30 @@ import java.util.stream.Stream;
  * @author Sebastian Avila A.
  */
 public class Main {
+  final int iiiii = 34;
+  Runnable r = () -> {
+    int iiiii = 4; // si puede redeclarar campos de la clase
+  };
+  static class Employee {
+    int age;
+  }
+
+  public static boolean validateEmployee(Employee e, Predicate<Employee> p) {
+    Employee x = new Employee();
+    x.age = 1000;
+    return p.test(x);
+  }
 
   public static void main(String[] args) {
+    final int ii = 2;
+    Runnable r = () -> {
+      //            int ii = 4; --> no compila, no puede redeclarar la variable local
+    };
+
+    Employee e = new Employee();
+    System.out.println(validateEmployee(e, x -> e.age > 0));
+
+
     String sentence1 = "Carpe diem. Seize the day, boys. Make your lives extraordinary.";
     String sentence2 = "Frankly, my dear, I don't give a damn!";
     String sentence3 = "Do I look like I give a damn?";
@@ -36,16 +58,13 @@ public class Main {
     String[] dd = new String[] {"f", "f"};
     int[] ddd = new int[] {4, 4};
     Stream<String> dddd = Stream.of(dd);
-    Stream<String> xxx =  Arrays.stream(dd);
+    Stream<String> xxx = Arrays.stream(dd);
     IntStream xx = Arrays.stream(ddd);
     Stream<int[]> ddddd = Stream.of(ddd);
 
     Stream<Integer> sss = Stream.of(1, 2);
-    sentences.stream()
-    .flatMap(str->Stream.of(str.split("[ ,.!?\r\n]")))
-    .peek(System.out::println)
-    .filter(s->s.length()>0)
-    .distinct().forEach(System.out::println);
+    sentences.stream().flatMap(str -> Stream.of(str.split("[ ,.!?\r\n]"))).peek(System.out::println)
+    .filter(s -> s.length() > 0).distinct().forEach(System.out::println);
 
     List<String> l1 = Arrays.asList("a", "b");
     List<String> l2 = Arrays.asList("1", "2");
@@ -55,8 +74,7 @@ public class Main {
       System.out.println(x);
     });
 
-    Stream.of(l1, l2).flatMap((x) -> x.stream())
-    .peek(x -> System.out.println(">>" + x.getClass()))
+    Stream.of(l1, l2).flatMap((x) -> x.stream()).peek(x -> System.out.println(">>" + x.getClass()))
     .forEach((x) -> {
       System.out.println(x.getClass());
       System.out.println(x);
