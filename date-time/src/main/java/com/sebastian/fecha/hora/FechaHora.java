@@ -3,16 +3,60 @@ package com.sebastian.fecha.hora;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
+import java.time.OffsetDateTime;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
 
 public class FechaHora {
   public static void main(String[] args) {
+    LocalDateTime ld1 = LocalDateTime.of(2015, Month.NOVEMBER, 1, 2, 0);
+    ZonedDateTime zd1 = ZonedDateTime.of(ld1, ZoneId.of("US/Eastern"));
+    LocalDateTime ld2 = LocalDateTime.of(2015, Month.NOVEMBER, 1, 1, 0);
+    ZonedDateTime zd2 = ZonedDateTime.of(ld2, ZoneId.of("US/Eastern"));
+    long x = ChronoUnit.HOURS.between(zd1, zd2);
+    System.out.println(zd1);
+    System.out.println(zd2);
+    System.out.println(x);
+    System.out.println("**********************");
+    List<Integer> ls = Arrays.asList(3,4,6,9,2,5,7);
+    System.out.println(ls.stream().reduce(Integer.MIN_VALUE, (a, b)->a>b?a:b)); //1
+    System.out.println(ls.stream().max(Integer::max).get()); //2
+    System.out.println(ls.stream().max(Integer::compare).get()); //3
+    System.out.println(ls.stream().max((a, b)->a>b?a:b)); //4
+    ls.stream().max((i,j) -> {
+      System.out.println("i: " + i + " -> j: " + j + "=" + Integer.max(i, j));
+      return Integer.max(i, j);
+    });
+    System.out.println("::::::::::::::");
+    ls.stream().max((i,j) -> {
+      System.out.println("i: " + i + " -> j: " + j + "=" + Integer.compare(i, j));
+      return Integer.compare(i, j);
+    });
+    System.out.println("___________");
+
+    LocalDateTime ldt = LocalDateTime.of(2017, 06, 02, 6, 0, 0);  //Jun 2nd, 6AM.
+    ZoneOffset nyOffset = ZoneOffset.ofHoursMinutes(-5, 0);
+    ZoneId nyZone = ZoneId.of("America/New_York");
+    OffsetDateTime nyOdt = ldt.atOffset(nyOffset);
+    ZonedDateTime nyZdt = ldt.atZone(nyZone);
+    Duration dx = Duration.between(nyOdt, nyZdt);
+    System.out.println("-5:" + nyOdt);
+    System.out.println("A/N:" + nyZdt);
+    System.out.println(dx);
+
+    System.out.println("----");
+
+    System.out.println(Duration.between(LocalTime.now(), LocalTime.now().minus(3, ChronoUnit.MINUTES)));
+
     System.out.println(Instant.now());
     System.out.println(LocalDateTime.now());
     // periodo no cambia el tiempo
